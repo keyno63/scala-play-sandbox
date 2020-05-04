@@ -14,10 +14,10 @@ object Sample extends App {
     override def convert(value: Int): String = s"convert int ${value.toString}"
   }
 
-  def convert[T](a: T)(implicit ip: Convert[T]) = println(ip.convert(a))
+  def convert[T](a: T)(implicit ip: Convert[T]): Unit = println(ip.convert(a))
 
   // main
-  convert(100)
+  convert(100)(int)
   convert("Hello")
 
   implicit val int1: Convert[Int] = new Convert[Int] {
