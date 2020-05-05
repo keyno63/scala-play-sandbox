@@ -1,0 +1,38 @@
+# scala-scraper
+## 使い方
+### 初期化
+JsoupBrowser object からリソース操作する
+
+val jsoupBrowser = JsoupBrowser()
+val doc = browser.get("http://example.com") // リソース取得
+
+## リソース読み取り
+### http 経由
+val jsoupBrowser = JsoupBrowser()
+val doc = jsoupBrowser.parseString(content)
+
+### ファイルから読み取り
+val jsoupBrowser = JsoupBrowser()
+val doc = jsoupBrowser.parseFile("core/src/test/resources/example.html")
+
+### 文字列から読み取り
+val content = """
+<!DOCTYPE html>
+:
+</html>
+"""
+
+val jsoupBrowser = JsoupBrowser()
+val doc = jsoupBrowser.parseString(content)
+
+## リソース内の要素の取得
+// a タグの text 取得
+doc >> text("a")
+doc >?> text("a") // Option
+
+// 特定の id タグ
+doc >> text("div#content")
+
+// ドリルダウン？
+doc >> text("div#content section h3")
+
