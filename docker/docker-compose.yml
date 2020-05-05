@@ -10,7 +10,7 @@ services:
     container_name: postgres11_scalaplay
     restart: always
     ports:
-      - 35432:5432
+      - 45432:5432
     tty: true
     environment:
       POSTGRES_DB: sample_db
