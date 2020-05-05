@@ -146,7 +146,7 @@ case class Pokemon2(
     toList.map {
       case "" => "null"
       case x: Int => x.toString
-      case x: String => s""""$x""""
+      case x: String => s"""'$x'"""
     }.foreach(sb.add(_))
     println(sb.toString)
     sb.toString
