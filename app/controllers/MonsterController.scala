@@ -6,7 +6,7 @@ import services.MonsterService
 
 import scala.concurrent.{ExecutionContext, Future}
 
-//@Singleton
+@Singleton
 class MonsterController @Inject() (cc: ControllerComponents, ms: MonsterService)
                                   (implicit ec: ExecutionContext)
 extends AbstractController(cc) {
