@@ -29,7 +29,6 @@ class MonsterRepository {
     DB readOnly { implicit session =>
       sql"select name from m_monster where id = ${numberVal}".map(_.string("name")).list.apply()
     }
-
   }
 
 
