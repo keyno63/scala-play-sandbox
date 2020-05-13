@@ -3,14 +3,15 @@ package domain
 import scalikejdbc._
 import java.time._
 
+import auth.SampleAuth
+
 case class User(
                  id: Int,
                  name: String,
                  email: String,
-                 authLevel: Int,
+                 authLevel: SampleAuth,
                  password: String,
                  createAt: ZonedDateTime) {
-  // TODO: authLevel も class にする
   // TODO: さらにあとで時刻にする
 }
 

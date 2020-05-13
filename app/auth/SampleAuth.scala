@@ -2,11 +2,13 @@ package auth
 
 import domain.User
 
-sealed trait SampleAuth {
-
+sealed abstract class SampleAuth(val level: Int) {
+  def checkAuthority(user: User): Boolean =
+    level <= user.authLevel.level
 }
 
-sealed trait SampleAuth(val level: Int) {
-  def checkAuthority(user: User): Boolean =
-    level <= user.authLevel.value
+object SampleAuth {
+  case object Disabled extends SampleAuth(-1)
+  case object Administrator extends SampleAuth(0)
+  case object NormalUser extends SampleAuth(1)
 }
