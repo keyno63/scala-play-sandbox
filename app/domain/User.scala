@@ -10,6 +10,7 @@ case class User(
                  authLevel: Int,
                  password: String,
                  createAt: ZonedDateTime) {
+  // TODO: authLevel も class にする
   // TODO: さらにあとで時刻にする
 }
 
