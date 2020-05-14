@@ -22,7 +22,7 @@ object User extends SQLSyntaxSupport[User]{
     rs.int("id"),
     rs.string("name"),
     rs.string("email"),
-    rs.int("authLevel"),
+    SampleAuth.find(rs.int("authLevel")).get,
     rs.string("password"),
     rs.zonedDateTime("created_at"))
 
