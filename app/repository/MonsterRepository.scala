@@ -27,7 +27,13 @@ class MonsterRepository {
   def get(number: Option[String]): List[String] = {
     val numberVal = number.getOrElse("")
     DB readOnly { implicit session =>
-      sql"select name from m_monster where id = ${numberVal}".map(_.string("name")).list.apply()
+      sql"""SELECT
+           |  name
+           |FROM
+           |  m_monster
+           |WHERE
+           |  id = ${numberVal}"""
+        .map(_.string("name")).list.apply()
     }
   }
 
