@@ -20,7 +20,10 @@ class MonsterRepository {
 
   def getAll(): List[String] = {
     DB readOnly { implicit session =>
-      sql"select name from m_monster".map(_.string("name")).list.apply()
+      sql"""SELECT
+              name
+            FROM
+              m_monster""".map(_.string("name")).list.apply()
     }
   }
 
@@ -28,11 +31,11 @@ class MonsterRepository {
     val numberVal = number.getOrElse("")
     DB readOnly { implicit session =>
       sql"""SELECT
-           |  name
-           |FROM
-           |  m_monster
-           |WHERE
-           |  id = ${numberVal}"""
+             name
+           FROM
+             m_monster
+           WHERE
+             id = ${numberVal}"""
         .map(_.string("name")).list.apply()
     }
   }
