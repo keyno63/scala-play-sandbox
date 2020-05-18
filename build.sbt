@@ -9,6 +9,8 @@ resolvers += "scalaz-bintray" at "https://dl.bintray.com/scalaz/releases"
 resolvers += "Akka Snapshot Repository" at "https://repo.akka.io/snapshots/"
       
 scalaVersion := "2.12.2"
+val playVersion = "2.8.0"
+val scalikejdbcVersion = "3.4"
 
 libraryDependencies ++= Seq( jdbc , ehcache , ws , specs2 % Test , guice ) ++
   Seq(
@@ -16,9 +18,9 @@ libraryDependencies ++= Seq( jdbc , ehcache , ws , specs2 % Test , guice ) ++
 
     // scalikejdbc
     // https://mvnrepository.com/artifact/org.scalikejdbc/scalikejdbc
-    "org.scalikejdbc" %% "scalikejdbc" % "3.4.1",
-    "org.scalikejdbc" %% "scalikejdbc-config"           % "3.4.1",
-    "org.scalikejdbc" %% "scalikejdbc-play-initializer" % "2.8.0-scalikejdbc-3.4",
+    "org.scalikejdbc" %% "scalikejdbc" % scalikejdbcVersion,
+    "org.scalikejdbc" %% "scalikejdbc-config"           % scalikejdbcVersion,
+    "org.scalikejdbc" %% "scalikejdbc-play-initializer" % s"${playVersion}-scalikejdbc-${scalikejdbcVersion}",
     "org.postgresql" % "postgresql" % "42.2.12"
   ) ++
   Seq(
