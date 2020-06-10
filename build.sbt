@@ -10,7 +10,8 @@ resolvers += "Akka Snapshot Repository" at "https://repo.akka.io/snapshots/"
       
 scalaVersion := "2.12.2"
 val playVersion = "2.8.0"
-val scalikejdbcVersion = "3.4"
+val scalikejdbcVersion = "3.4.0"
+val scalikejdbcInitializerVersion = "3.4"
 
 libraryDependencies ++= Seq( jdbc , ehcache , ws , specs2 % Test , guice ) ++
   Seq(
@@ -20,7 +21,7 @@ libraryDependencies ++= Seq( jdbc , ehcache , ws , specs2 % Test , guice ) ++
     // https://mvnrepository.com/artifact/org.scalikejdbc/scalikejdbc
     "org.scalikejdbc" %% "scalikejdbc" % scalikejdbcVersion,
     "org.scalikejdbc" %% "scalikejdbc-config"           % scalikejdbcVersion,
-    "org.scalikejdbc" %% "scalikejdbc-play-initializer" % s"${playVersion}-scalikejdbc-${scalikejdbcVersion}",
+    "org.scalikejdbc" %% "scalikejdbc-play-initializer" % s"${playVersion}-scalikejdbc-${scalikejdbcInitializerVersion}",
     "org.postgresql" % "postgresql" % "42.2.12"
   ) ++
   Seq(
