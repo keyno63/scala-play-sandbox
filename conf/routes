@@ -16,4 +16,7 @@ GET     /assets/*file               controllers.Assets.versioned(path="/public",
 GET     /monster/getAll                controllers.MonsterController.getAll()
 GET     /monster/get                controllers.MonsterController.get(number: Option[String])
 
-      
++nocsrf
+POST     /graphql                controllers.GraphQlController.graphql()
++nocsrf
+POST     /xparse                  controllers.GraphQlController.xparse()

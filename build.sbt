@@ -33,6 +33,7 @@ libraryDependencies ++= Seq( jdbc , ehcache , ws , specs2 % Test , guice ) ++
   Seq(
     // sangria
     "org.sangria-graphql" %% "sangria" % "2.0.0",
+    "org.sangria-graphql" %% "sangria-slowlog" % "0.1.8",
     "org.sangria-graphql" %% "sangria-circe" % "1.2.1",
     "org.sangria-graphql" %% "sangria-spray-json" % "1.0.2",
     // circe(json libs)
