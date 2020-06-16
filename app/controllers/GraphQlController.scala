@@ -1,12 +1,12 @@
 package controllers
 
 import javax.inject.{Inject, Singleton}
-import play.api.mvc.{AbstractController, Action, AnyContent, ControllerComponents}
+import play.api.mvc.{AbstractController, Action, ControllerComponents}
 import io.circe.generic.auto._
 import sangria.marshalling.circe._
 import sangria.parser.{QueryParser, SyntaxError}
 import play.api.libs.circe.Circe
-import sangria.schema.{Argument, Field, IntType, InterfaceType, ListType, ObjectType, OptionInputType, OptionType, Schema, StringType, fields, interfaces}
+import sangria.schema._
 import io.circe._
 import io.circe.optics.JsonPath._
 import io.circe.parser.{parse => cparse, _}
@@ -149,12 +149,12 @@ object UserRepo {
 
 /* schema 定義. GraphQl のスキーマ定義. */
 object SchemaDefinition {
-  val ID = Argument("id", IntType, description = "id of the character")
+  val ID: Argument[Int] = Argument("id", IntType, description = "id of the character")
 
-  val LimitArg = Argument("limit", OptionInputType(IntType), defaultValue = 20)
-  val OffsetArg = Argument("offset", OptionInputType(IntType), defaultValue = 0)
+  val LimitArg: Argument[Int] = Argument("limit", OptionInputType(IntType), defaultValue = 20)
+  val OffsetArg: Argument[Int] = Argument("offset", OptionInputType(IntType), defaultValue = 0)
 
-  val users = Fetcher.caching(
+  val users: Fetcher[UserRepo, User, User, Int] = Fetcher.caching(
     (ctx: UserRepo, ids: Seq[Int]) =>
       Future.successful(ids.flatMap(id => ctx.getUser(id))))(HasId(_.id))
 
@@ -168,6 +168,7 @@ object SchemaDefinition {
           resolve = _.value.id)
       )
     )
+  /* 実際のオブジェクト */
   val User: ObjectType[UserRepo, User] =
     ObjectType(
       "User",
@@ -187,7 +188,7 @@ object SchemaDefinition {
       )
     )
 
-  val Query = ObjectType(
+  val Query: ObjectType[UserRepo, Unit] = ObjectType(
     "Query", fields[UserRepo, Unit](
       Field("user", OptionType(User),
         arguments = ID :: Nil,
@@ -197,7 +198,7 @@ object SchemaDefinition {
         resolve = ctx => ctx.ctx.getUsers(ctx arg LimitArg, ctx arg OffsetArg)),
     ))
   // 実際の schema
-  val UserSchema = Schema(Query)
+  val UserSchema: Schema[UserRepo, Unit] = Schema(Query)
 }
 
 /*
