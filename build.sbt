@@ -1,8 +1,10 @@
-name := "scala_play"
- 
-version := "1.0" 
+version := "1.0"
       
-lazy val `scala_play` = (project in file(".")).enablePlugins(PlayScala)
+lazy val `scala-play-sandbox` = (project in file("."))
+  .enablePlugins(PlayScala)
+  .settings(
+    name := "scala-play-sandbox"
+  )
 
 resolvers += "scalaz-bintray" at "https://dl.bintray.com/scalaz/releases"
       
